@@ -1,8 +1,7 @@
-name: Build paper2
+name: Build paper22
 
 on:
   push:
-    branches: [ ver/1.21.10 ]
   workflow_dispatch:
 
 jobs:
