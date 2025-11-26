@@ -2062,7 +2062,7 @@ public class CraftEventFactory {
         } else {
             event = new io.papermc.paper.event.entity.EntityKnockbackEvent(entity, cause, apiKnockback);
         }
-        event.setCancelled(legacyEvent.isCancelled());
+        event.setCancelled(legacyEvent != null && legacyEvent.isCancelled());
         event.callEvent();
         return event;
     }
