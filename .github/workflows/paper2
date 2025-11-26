@@ -1,4 +1,4 @@
-name: Build paper2
+name: Build paper22
 
 on:
   push:
