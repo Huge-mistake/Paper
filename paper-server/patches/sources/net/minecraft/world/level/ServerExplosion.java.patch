@@ -75,7 +75,7 @@
              if (!entity.ignoreExplosion(this)) {
                  double d = Math.sqrt(entity.distanceToSqr(this.center)) / f;
                  if (!(d > 1.0)) {
-@@ -185,18 +_,54 @@
+@@ -185,18 +_,52 @@
                      Vec3 vec31 = vec3.subtract(this.center).normalize();
                      boolean shouldDamageEntity = this.damageCalculator.shouldDamageEntity(this, entity);
                      float knockbackMultiplier = this.damageCalculator.getKnockbackMultiplier(entity);
