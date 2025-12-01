@@ -67,10 +67,10 @@ index ff6fc300e9e7d1dbf4b0fa1e59bffe94e1f51259..d58ee455467b2c8307ea20f8a9d88f0f
          io.papermc.paper.adventure.providers.ClickCallbackProviderImpl.DIALOG_CLICK_MANAGER.handleQueue(this.tickCount); // Paper
          profilerFiller.push("commandFunctions");
 diff --git a/net/minecraft/world/entity/Entity.java b/net/minecraft/world/entity/Entity.java
-index 7ab250350027543adc3926632b0d68a2254c6ad3..2e3e038874757049445a91bf590d5a1a427a3f6d 100644
+index 954dcb1b43f59438910b85e44002379cfa40982c..b8f69dc2072f5887543685ab4a84e999d6248a81 100644
 --- a/net/minecraft/world/entity/Entity.java
 +++ b/net/minecraft/world/entity/Entity.java
-@@ -5190,6 +5190,11 @@ public abstract class Entity implements SyncedDataHolder, DebugValueSource, Name
+@@ -5201,6 +5201,11 @@ public abstract class Entity implements SyncedDataHolder, DebugValueSource, Name
          this.getBukkitEntity().taskScheduler.retire();
      }
      // Paper end - Folia schedulers
