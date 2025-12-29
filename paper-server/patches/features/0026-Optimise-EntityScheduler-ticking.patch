@@ -20,7 +20,7 @@ index a2fbc13105673e926cbaed69221826ebd392140f..a42938e1abd371dba6806e65552fde71
  
      @Override
 diff --git a/net/minecraft/server/MinecraftServer.java b/net/minecraft/server/MinecraftServer.java
-index ff6fc300e9e7d1dbf4b0fa1e59bffe94e1f51259..d58ee455467b2c8307ea20f8a9d88f0f18053fc1 100644
+index ab9952e34fbddcc28bd7cc5820fa51943838b939..50109a37cd2cb8099de1d8568d779cc6bfe92ffa 100644
 --- a/net/minecraft/server/MinecraftServer.java
 +++ b/net/minecraft/server/MinecraftServer.java
 @@ -1736,33 +1736,22 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
@@ -67,10 +67,10 @@ index ff6fc300e9e7d1dbf4b0fa1e59bffe94e1f51259..d58ee455467b2c8307ea20f8a9d88f0f
          io.papermc.paper.adventure.providers.ClickCallbackProviderImpl.DIALOG_CLICK_MANAGER.handleQueue(this.tickCount); // Paper
          profilerFiller.push("commandFunctions");
 diff --git a/net/minecraft/world/entity/Entity.java b/net/minecraft/world/entity/Entity.java
-index e2905425313a814cd05ce7fa37679edbd249f1ca..46d7cd841aeeddac765ca1568dc8db2d5abdafef 100644
+index 305aae50ea18070572bd4a3380e2a8c0af55b18b..ab15f67c449345212db1a9471798d8b719054995 100644
 --- a/net/minecraft/world/entity/Entity.java
 +++ b/net/minecraft/world/entity/Entity.java
-@@ -5192,6 +5192,11 @@ public abstract class Entity implements SyncedDataHolder, DebugValueSource, Name
+@@ -5203,6 +5203,11 @@ public abstract class Entity implements SyncedDataHolder, DebugValueSource, Name
          this.getBukkitEntity().taskScheduler.retire();
      }
      // Paper end - Folia schedulers
