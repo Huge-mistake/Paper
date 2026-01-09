@@ -30188,7 +30188,7 @@ index 60be05520f1093e3edc7dbfcf5bd01601d5e6e7b..fd5a38a9f24c26f8eca738f78180446d
  
      @Nullable ChunkAccess getChunkIfLoadedImmediately(int x, int z); // Paper - ifLoaded api (we need this since current impl blocks if the chunk is loading)
 diff --git a/net/minecraft/world/level/ServerExplosion.java b/net/minecraft/world/level/ServerExplosion.java
-index 907956791afe10021d9fc86bab7a115ee9ff57a5..1e94326047622d8975fd1cc5f44e75104fd56946 100644
+index ef8470238f75037fdac394eef2428d170abbdb81..2aa53876469bb742f2e0a767130ebbeea5e5da60 100644
 --- a/net/minecraft/world/level/ServerExplosion.java
 +++ b/net/minecraft/world/level/ServerExplosion.java
 @@ -62,6 +62,249 @@ public class ServerExplosion implements Explosion {
@@ -30591,7 +30591,7 @@ index 907956791afe10021d9fc86bab7a115ee9ff57a5..1e94326047622d8975fd1cc5f44e7510
      }
  
      private void hurtEntities() {
-@@ -350,6 +632,14 @@ public class ServerExplosion implements Explosion {
+@@ -348,6 +630,14 @@ public class ServerExplosion implements Explosion {
      }
  
      public int explode() {
@@ -30606,7 +30606,7 @@ index 907956791afe10021d9fc86bab7a115ee9ff57a5..1e94326047622d8975fd1cc5f44e7510
          this.level.gameEvent(this.source, GameEvent.EXPLODE, this.center);
          List<BlockPos> list = this.calculateExplodedPositions();
          this.hurtEntities();
-@@ -364,6 +654,13 @@ public class ServerExplosion implements Explosion {
+@@ -362,6 +652,13 @@ public class ServerExplosion implements Explosion {
              this.createFire(list);
          }
  
@@ -30620,7 +30620,7 @@ index 907956791afe10021d9fc86bab7a115ee9ff57a5..1e94326047622d8975fd1cc5f44e7510
          return list.size();
      }
  
-@@ -447,12 +744,12 @@ public class ServerExplosion implements Explosion {
+@@ -445,12 +742,12 @@ public class ServerExplosion implements Explosion {
      // Paper start - Optimize explosions
      private float getBlockDensity(Vec3 vec3d, Entity entity) {
          if (!this.level.paperConfig().environment.optimizeExplosions) {
