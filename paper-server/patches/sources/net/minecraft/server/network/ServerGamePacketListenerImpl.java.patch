@@ -1814,7 +1814,7 @@
              this.player.resetLastActionTime();
              this.player.setShiftKeyDown(packet.isUsingSecondaryAction());
              if (target != null) {
-@@ -1751,16 +_,63 @@
+@@ -1751,34 +_,89 @@
                  }
  
                  AABB boundingBox = target.getBoundingBox();
@@ -1861,7 +1861,7 @@
 +                                        // Refresh the current entity metadata
 +                                        target.refreshEntityData(ServerGamePacketListenerImpl.this.player);
 +                                        // SPIGOT-7136 - Allays
-+                                        if (target instanceof net.minecraft.world.entity.animal.allay.Allay || target instanceof net.minecraft.world.entity.animal.equine.AbstractHorse) { // Paper - Fix horse armor desync
++                                        if (target instanceof net.minecraft.world.entity.Mob) { // Paper - Fix horse armor desync
 +                                            ServerGamePacketListenerImpl.this.send(new net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket(
 +                                                target.getId(), java.util.Arrays.stream(net.minecraft.world.entity.EquipmentSlot.values())
 +                                                .map((slot) -> com.mojang.datafixers.util.Pair.of(slot, ((LivingEntity) target).getItemBySlot(slot).copy()))
@@ -1883,7 +1883,19 @@
                                          ItemStack itemStack1 = success.wasItemInteraction() ? itemStack : ItemStack.EMPTY;
                                          CriteriaTriggers.PLAYER_INTERACTED_WITH_ENTITY.trigger(ServerGamePacketListenerImpl.this.player, itemStack1, target);
                                          if (success.swingSource() == InteractionResult.SwingSource.SERVER) {
-@@ -1772,13 +_,13 @@
+                                             ServerGamePacketListenerImpl.this.player.swing(hand, true);
+                                         }
++                                    } else if (result instanceof InteractionResult.Pass) {
++                                        if (target instanceof net.minecraft.world.entity.Mob) {
++                                            ServerGamePacketListenerImpl.this.send(new net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket(
++                                                target.getId(), java.util.Arrays.stream(net.minecraft.world.entity.EquipmentSlot.values())
++                                                .map((slot) -> com.mojang.datafixers.util.Pair.of(slot, ((LivingEntity) target).getItemBySlot(slot).copy()))
++                                                .collect(Collectors.toList()), true)); // Paper - sanitize
++                                            player.containerMenu.sendAllDataToRemote();
++                                        }
+                                     }
+                                 }
+                             }
  
                              @Override
                              public void onInteraction(InteractionHand hand) {
