@@ -57,12 +57,16 @@ public final class DespawnRange {
 
     public boolean shouldDespawn(final Shape shape, final double dxSqr, final double dySqr, final double dzSqr, final double dy) {
         final double horizontalDistanceSquared = dxSqr + dzSqr;
+        final double horizontalLimitSquared = this.preComputedHorizontalLimitSquared;
         return switch (shape) {
-            case ELLIPSOID -> horizontalDistanceSquared + dySqr * this.preComputedHorizontalLimitSquaredOverVerticalLimitSquared > this.preComputedHorizontalLimitSquared;
-            case CYLINDER -> horizontalDistanceSquared > this.preComputedHorizontalLimitSquared || dy > this.verticalLimit.or(this.preComputedVanillaDefaultLimit);
+            case ELLIPSOID -> horizontalDistanceSquared + dySqr * this.preComputedHorizontalLimitSquaredOverVerticalLimitSquared > horizontalLimitSquared;
+            case CYLINDER -> horizontalDistanceSquared > horizontalLimitSquared || dy > this.verticalLimit.or(this.preComputedVanillaDefaultLimit);
             case HYBRID -> {
+                if (dxSqr > horizontalLimitSquared || dzSqr > horizontalLimitSquared) {
+                    yield true;
+                }
                 final int vanillaLimit = this.preComputedVanillaDefaultLimit;
-                yield horizontalDistanceSquared > this.preComputedHorizontalLimitSquared || dy > this.verticalLimit.or(vanillaLimit) || horizontalDistanceSquared + dySqr > (double) vanillaLimit * vanillaLimit;
+                yield dy > this.verticalLimit.or(vanillaLimit) || horizontalDistanceSquared + dySqr > (double) vanillaLimit * vanillaLimit;
             }
         };
     }
