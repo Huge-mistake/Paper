@@ -63,12 +63,7 @@ public final class DespawnRange {
         return switch (shape) {
             case ELLIPSOID -> horizontalDistanceSquared + dySqr * this.preComputedHorizontalLimitSquaredOverVerticalLimitSquared > horizontalLimitSquared;
             case CYLINDER -> horizontalDistanceSquared > horizontalLimitSquared || dy > this.verticalLimit.or(this.preComputedVanillaDefaultLimit);
-            case HYBRID -> {
-                if (dxSqr > horizontalLimitSquared || dzSqr > horizontalLimitSquared) {
-                    yield true;
-                }
-                yield dy > this.verticalLimit.or(this.preComputedVanillaDefaultLimit) || horizontalDistanceSquared + dySqr > this.preComputedVanillaDefaultLimitSquared;
-            }
+            case HYBRID -> dxSqr > horizontalLimitSquared || dzSqr > horizontalLimitSquared || dy > this.verticalLimit.or(this.preComputedVanillaDefaultLimit) || horizontalDistanceSquared + dySqr > this.preComputedVanillaDefaultLimitSquared;
         };
     }
 
