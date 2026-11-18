@@ -13,7 +13,7 @@
  
          for (Entity entity : entities) {
 -            if (!(entity instanceof Mob mob && (mob.isPersistenceRequired() || mob.requiresCustomPersistence()))) {
-+            if (!(entity instanceof Mob mob && (mob.isPersistenceRequired() || mob.requiresCustomPersistence()) && !(entity.level().paperConfig().entities.spawning.countEndermenHoldingBlocksForSpawning && mob instanceof Enderman enderMan && enderMan.getCarriedBlock() != null))) {
++            if (!(entity instanceof Mob mob && (mob.isPersistenceRequired() || mob.requiresCustomPersistence()) && !(entity.level().paperConfig().entities.spawning.countEndermenHoldingBlocksForSpawning && mob instanceof Enderman enderMan && enderMan.getCarriedBlock() != null))) { // Paper - Count endermen holding blocks for spawning
                  MobCategory category = entity.getType().getCategory();
                  if (category != MobCategory.MISC) {
 +                    // Paper start - Only count natural spawns
